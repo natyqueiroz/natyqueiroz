@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nathaly Barbosa | Front-end Developer</title>
+  <meta name="description" content="Portfolio of Nathaly Barbosa, front-end developer based in São Paulo, Brazil." />
+
+  <!-- Como o link aparece quando compartilhado no WhatsApp/LinkedIn -->
+  <meta property="og:title" content="Nathaly Barbosa | Front-end Developer" />
+  <meta property="og:description" content="Front-end developer based in São Paulo, Brazil. Websites, landing pages and interfaces that work on any screen." />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=Playfair+Display:ital,wght@1,400;1,600&display=swap" />
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <!-- Roda antes da página aparecer: aplica o tema salvo e evita o "piscar" branco/preto -->
+  <script>
+    try {
+      document.documentElement.dataset.theme = localStorage.getItem("theme") === "light" ? "light" : "dark";
+    } catch (e) {
+      document.documentElement.dataset.theme = "dark";
+    }
+  </script>
+</head>
+
+<body>
+  <!-- Canvas do fundo (decorativo: leitores de tela ignoram) -->
+  <canvas id="starfield" aria-hidden="true"></canvas>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <!-- Status de disponibilidade -->
+    <div class="navbar__status status-pill">
+      <span class="green" aria-hidden="true"></span>
+      <span class="status-long" data-i18n="status.available">Available for selected work</span>
+      <span class="status-short" data-i18n="status.short">Available</span>
+    </div>
+
+    <nav class="nav" data-i18n-aria="nav.aria" aria-label="Main navigation">
+      <a class="nav-link is-active" href="#home" data-i18n="nav.home">Home</a>
+      <a class="nav-link" href="#about" data-i18n="nav.about">About</a>
+      <a class="nav-link" href="#portfolio" data-i18n="nav.work">Work</a>
+      <a class="nav-link" href="#contact" data-i18n="nav.contact">Contact</a>
+      <!-- A "pílula" branca agora é posicionada pelo JS, medindo cada link -->
+      <span class="nav__span" aria-hidden="true"></span>
+    </nav>
+
+    <!-- Tema e idioma -->
+    <div class="navbar__controls">
+      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch theme">
+        <i data-lucide="sun" class="theme-icon--sun" aria-hidden="true"></i>
+        <i data-lucide="moon" class="theme-icon--moon" aria-hidden="true"></i>
+      </button>
+      <button class="icon-btn" id="lang-toggle" type="button" aria-label="Mudar para português">
+        <i data-lucide="globe" aria-hidden="true"></i>
+        <span id="lang-label">EN</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- <main> envolve TODO o conteúdo principal da página (antes envolvia só o About) -->
+  <main>
+
+    <!-- ===== HERO ===== -->
+    <section id="home" class="landpage">
+      <div class="landpage__center">
+        <h1 class="landpage__title">NATHALY</h1>
+        <p class="landpage__kicker" data-i18n="hero.kicker">| Software Engineering Student</p>
+        <p class="landpage__impact" data-i18n="hero.impact">building a new future.</p>
+      </div>
+
+      <div class="landpage__corner landpage__corner--left">
+        <div class="landpage__icon" aria-hidden="true"><i data-lucide="map-pin"></i></div>
+        <div class="landpage__cornerText">
+          <div class="landpage__cornerStrong" data-i18n="hero.based">BASED IN SÃO PAULO,</div>
+          <div class="landpage__cornerMuted" data-i18n="hero.country">BRAZIL</div>
+        </div>
+      </div>
+
+      <div class="landpage__corner landpage__corner--right">
+        <div class="landpage__icon" aria-hidden="true"><i data-lucide="code"></i></div>
+        <div class="landpage__cornerText landpage__cornerText--right">
+          <div class="landpage__cornerStrong" data-i18n="hero.role">FRONT-END DEV</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section id="about" class="wrap" aria-labelledby="about-title">
+      <div class="grid">
+
+        <!-- CARD ESQUERDO -->
+        <article class="card card-left">
+          <header class="card-top">
+            <div class="title">
+              <span class="name">Nathaly</span>
+              <span class="surname">Barbosa</span>
+            </div>
+
+            <div class="meta">
+              <span class="meta-row">
+                <i data-lucide="map-pin" class="ico" aria-hidden="true"></i>
+                <!-- O relógio é preenchido pelo main.js no fuso de São Paulo -->
+                <span>São Paulo, BR • <time id="clock">--:--</time></span>
+              </span>
+            </div>
+          </header>
+
+          <!-- Fotos: coloque p1.jpg, p2.jpg e p3.jpg dentro da pasta assets/img/ -->
+          <div class="photos" aria-hidden="true">
+            <div class="photo p1"></div>
+            <div class="photo p2"></div>
+            <div class="photo p3"></div>
+          </div>
+
+          <footer class="social">
+            <a class="icon" href="https://www.linkedin.com/in/nathaly-barbosa-2378032b0/" target="_blank"
+              rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" />
+                <rect width="4" height="12" x="2" y="9" />
+                <circle cx="4" cy="4" r="2" />
+              </svg>
+            </a>
+
+            <!-- TODO: troque SEU-USUARIO pelo seu usuário do GitHub -->
+            <a class="icon" href="https://github.com/SEU-USUARIO" target="_blank" rel="noopener noreferrer"
+              aria-label="GitHub">
+              <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path
+                  d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                <path d="M9 18c-4.51 2-5-2-7-2" />
+              </svg>
+            </a>
+
+            <a class="icon" href="https://www.instagram.com/_naty.vieira_/" target="_blank" rel="noopener noreferrer"
+              aria-label="Instagram">
+              <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+              </svg>
+            </a>
+          </footer>
+        </article>
+
+        <!-- CARD MEIO -->
+        <article class="card card-mid">
+          <header class="mid-top">
+            <span class="pill-mini">
+              <i data-lucide="sparkles" class="ico" aria-hidden="true"></i>
+              <span data-i18n="about.pill">DETAIL-DRIVEN UI</span>
+            </span>
+
+            <div class="mid-right">
+              <span class="mini-label" data-i18n="about.philosophy">PHILOSOPHY</span>
+              <span class="star" aria-hidden="true">✦</span>
+            </div>
+          </header>
+
+          <div class="mid-content">
+            <!-- h2 (e não h1): a página deve ter um único h1, que já é o NATHALY do hero -->
+            <h2 class="headline" id="about-title">
+              <span class="h-strong" data-i18n="about.h1">About</span>
+              <span class="h-script" data-i18n="about.h2">me.</span>
+            </h2>
+
+            <p class="subtext" data-i18n="about.p1">
+              I am Nathaly Barbosa, a developer passionate about transforming ideas into structured, high-performance
+              digital solutions. I focus on clean code, scalable systems, and intuitive user experiences that feel as
+              good as they function.
+            </p>
+            <p class="subtext" data-i18n="about.p2">
+              Constantly learning and evolving, I am committed to mastering both the technical and strategic sides of
+              development. I don’t just build features — I build foundations designed to last.
+            </p>
+          </div>
+        </article>
+
+        <!-- CARD DIREITO -->
+        <article class="card card-right">
+          <header class="right-top">
+            <span class="dotbtn" aria-hidden="true"><span class="dot"></span></span>
+
+            <div class="status">
+              <span class="green" aria-hidden="true"></span>
+              <span data-i18n="about.status">Available for work</span>
+            </div>
+          </header>
+
+          <div class="right-content">
+            <h2 class="right-title">
+              <span class="rt-strong" data-i18n="about.buildStrong">LET'S BUILD SOMETHING</span>
+              <span class="rt-script" data-i18n="about.buildScript">that actually works.</span>
+            </h2>
+
+            <div class="divider"></div>
+
+            <!-- Agora é um <button> de verdade: funciona com mouse, toque e teclado -->
+            <button class="email" type="button" data-copy="vnathy54@gmail.com" aria-describedby="hint">
+              <i data-lucide="copy" class="ico" aria-hidden="true"></i>
+              <span class="email-text">vnathy54@gmail.com</span>
+            </button>
+            <div class="hint" id="hint" aria-live="polite" data-i18n="about.hint">TAP TO COPY EMAIL</div>
+
+            <a class="cta" href="#contact">
+              <span data-i18n="about.cta">CONNECT NOW</span> <span class="arr" aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ===== SKILLS ===== -->
+    <section id="skills" class="wrap section" data-nav="about" aria-labelledby="skills-title">
+      <header class="section__head">
+        <h2 class="headline" id="skills-title">
+          <span class="h-strong" data-i18n="skills.h1">What I</span>
+          <span class="h-script" data-i18n="skills.h2">work with.</span>
+        </h2>
+      </header>
+      <!-- Preenchido pelo main.js a partir de PORTFOLIO.skills (data.js) -->
+      <div class="skills" id="skills-list"></div>
+    </section>
+
+    <!-- ===== JOURNEY ===== -->
+    <section id="journey" class="wrap section" data-nav="about" aria-labelledby="journey-title">
+      <header class="section__head">
+        <h2 class="headline" id="journey-title">
+          <span class="h-strong" data-i18n="journey.h1">My</span>
+          <span class="h-script" data-i18n="journey.h2">journey.</span>
+        </h2>
+      </header>
+      <ol class="timeline" id="journey-list"></ol>
+    </section>
+
+    <!-- ===== SERVICES ===== -->
+    <section id="services" class="wrap section" data-nav="portfolio" aria-labelledby="services-title">
+      <header class="section__head">
+        <h2 class="headline" id="services-title">
+          <span class="h-strong" data-i18n="services.h1">How I can</span>
+          <span class="h-script" data-i18n="services.h2">help you.</span>
+        </h2>
+        <p class="subtext" data-i18n="services.sub">Available for freelance projects and front-end roles.</p>
+      </header>
+      <div class="services" id="services-list"></div>
+    </section>
+
+    <!-- ===== PORTFOLIO ===== -->
+    <section id="portfolio" class="wrap section" aria-labelledby="portfolio-title">
+      <header class="section__head">
+        <h2 class="headline" id="portfolio-title">
+          <span class="h-strong" data-i18n="work.h1">Selected</span>
+          <span class="h-script" data-i18n="work.h2">work.</span>
+        </h2>
+        <p class="subtext" data-i18n="work.sub">Projects I designed and built, from university assignments to personal experiments.</p>
+      </header>
+
+      <!-- Botões de filtro: gerados a partir das tecnologias dos projetos -->
+      <div class="filters" id="project-filters" role="group" data-i18n-aria="filter.aria" aria-label="Filter projects by technology"></div>
+
+      <div class="projects" id="projects-list" aria-live="polite"></div>
+    </section>
+
+    <!-- ===== ATIVIDADE NO GITHUB ===== -->
+    <section id="activity" class="wrap section" data-nav="portfolio" aria-labelledby="activity-title" hidden>
+      <div class="card activity">
+        <header class="activity__head">
+          <div>
+            <h2 class="archive__title" id="activity-title" data-i18n="activity.title">GitHub activity</h2>
+            <p class="activity__total" id="activity-total" data-i18n="activity.loading">Loading contributions…</p>
+          </div>
+          <a class="btn btn--ghost" id="activity-profile" href="#" target="_blank" rel="noopener noreferrer">
+            @<span id="activity-user"></span> <i data-lucide="arrow-up-right" class="ico" aria-hidden="true"></i>
+          </a>
+        </header>
+
+        <!-- O gráfico rola para os lados no celular; começa mostrando as semanas mais recentes -->
+        <div class="heatmap-scroll" id="heatmap-scroll">
+          <div class="heatmap-months" id="heatmap-months" aria-hidden="true"></div>
+          <div class="heatmap" id="heatmap" role="img"></div>
+        </div>
+
+        <div class="heatmap-legend" aria-hidden="true">
+          <span data-i18n="activity.less">Less</span>
+          <i class="lvl-0"></i><i class="lvl-1"></i><i class="lvl-2"></i><i class="lvl-3"></i><i class="lvl-4"></i>
+          <span data-i18n="activity.more">More</span>
+        </div>
+
+        <h3 class="activity__subtitle" data-i18n="activity.recent">Recent activity</h3>
+        <ul class="events" id="events-list"></ul>
+      </div>
+    </section>
+
+    <!-- ===== ARQUIVO DO GITHUB (todos os repositórios) ===== -->
+    <section id="archive" class="wrap section" data-nav="portfolio" aria-labelledby="archive-title" hidden>
+      <header class="section__head section__head--row">
+        <h2 class="archive__title" id="archive-title" data-i18n="archive.title">More on GitHub</h2>
+        <a class="btn btn--ghost" id="github-profile" href="#" target="_blank" rel="noopener noreferrer">
+          <span data-i18n="archive.view">View profile</span> <i data-lucide="arrow-up-right" class="ico" aria-hidden="true"></i>
+        </a>
+      </header>
+      <p class="archive__status" id="archive-status" data-i18n="archive.loading">Loading repositories…</p>
+      <div class="archive" id="archive-list"></div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section id="contact" class="wrap section" aria-labelledby="contact-title">
+      <div class="contact card">
+        <div class="contact__intro">
+          <h2 class="headline" id="contact-title">
+            <span class="h-strong" data-i18n="contact.h1">Let's</span>
+            <span class="h-script" data-i18n="contact.h2">talk.</span>
+          </h2>
+          <p class="subtext" data-i18n="contact.sub">Have a project or an opportunity in mind? Send me a message on any of these channels.</p>
+          <!-- Aparece só se PORTFOLIO.cvUrl estiver preenchido -->
+          <a class="btn btn--light contact__cv" id="cv-link" href="#" download hidden>
+            <i data-lucide="download" class="ico" aria-hidden="true"></i> <span data-i18n="contact.cv">Download CV</span>
+          </a>
+        </div>
+
+        <ul class="contact__list">
+          <li>
+            <a class="contact__item" href="mailto:vnathy54@gmail.com">
+              <i data-lucide="mail" class="ico" aria-hidden="true"></i>
+              <span class="contact__label" data-i18n="contact.email">Email</span>
+              <span class="contact__value">vnathy54@gmail.com</span>
+              <i data-lucide="arrow-up-right" class="ico contact__arrow" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
+            <a class="contact__item" href="https://www.linkedin.com/in/nathaly-barbosa-2378032b0/" target="_blank"
+              rel="noopener noreferrer">
+              <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" />
+                <rect width="4" height="12" x="2" y="9" />
+                <circle cx="4" cy="4" r="2" />
+              </svg>
+              <span class="contact__label">LinkedIn</span>
+              <span class="contact__value">Nathaly Barbosa</span>
+              <i data-lucide="arrow-up-right" class="ico contact__arrow" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
+            <a class="contact__item" href="https://www.instagram.com/_naty.vieira_/" target="_blank"
+              rel="noopener noreferrer">
+              <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+              </svg>
+              <span class="contact__label">Instagram</span>
+              <span class="contact__value">@_naty.vieira_</span>
+              <i data-lucide="arrow-up-right" class="ico contact__arrow" aria-hidden="true"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year">2026</span> Nathaly Barbosa</p>
+    <a href="#home" data-i18n="footer.top">Back to top ↑</a>
+  </footer>
+
+  <!-- 1º a biblioteca de ícones (versão fixa, carregada UMA vez), depois os nossos scripts -->
+  <script src="https://unpkg.com/lucide@1.47.0/dist/umd/lucide.min.js"></script>
+  <script src="assets/js/starfield.js"></script>
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>
