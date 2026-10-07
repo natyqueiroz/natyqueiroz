@@ -1,98 +1,144 @@
+/* =========================================================
+   starfield.js — fundo estrelado animado (versão otimizada)
+
+   O que deixa ele leve:
+   1. Todas as estrelas de uma camada viram UM desenho só (um "path"
+      com um único fill), em vez de centenas de desenhos separados.
+   2. Estrelas pequenas são quadradinhos (rect), bem mais baratos que
+      círculos (arc). Com 1 ou 2 pixels, ninguém vê a diferença.
+   3. O movimento é calculado pelo TEMPO, não por quadro.
+   4. A animação para quando a aba fica escondida.
+
+   Analogia: em vez de levar as compras do carro uma sacola por vez,
+   você junta tudo num carrinho e faz uma viagem só.
+   ========================================================= */
+
 const canvas = document.getElementById("starfield");
 const ctx = canvas.getContext("2d");
 
-let width, height;
-let stars = [];
-
-// Menos estrelas em telas pequenas = menos trabalho para o processador do celular
-const STAR_DENSITY = 0.00018; // estrelas por pixel de tela
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-// A cor das estrelas vem da variável --star do CSS (muda com o tema)
+// 3 camadas: as estrelas mais distantes são menores e mais lentas (efeito de profundidade)
+const LAYERS = [
+  { density: 0.00009, minSize: 0.5, maxSize: 1.2, speed: 6, round: false }, // speed = pixels por segundo
+  { density: 0.00006, minSize: 0.8, maxSize: 1.6, speed: 12, round: false },
+  { density: 0.00003, minSize: 1.0, maxSize: 1.8, speed: 20, round: true }, // só as maiores são redondas
+];
+
+let width = 0;
+let height = 0;
+let layers = []; // cada item: { stars: [{x, y, r}], speed, round, offset }
 let starColor = "white";
+
+/* ---------- Cor das estrelas vem do tema (variável --star do CSS) ---------- */
 function readStarColor() {
   starColor = getComputedStyle(document.documentElement).getPropertyValue("--star").trim() || "white";
-  if (reduceMotion) drawStars(); // céu parado precisa ser redesenhado na hora
+  drawFrame();
 }
 
-// MutationObserver = "vigia": avisa quando o atributo data-theme do <html> muda
+// "Vigia" que avisa quando o atributo data-theme do <html> muda
 new MutationObserver(readStarColor).observe(document.documentElement, {
   attributes: true,
   attributeFilter: ["data-theme"],
 });
 
+/* ---------- Tamanho do canvas ---------- */
 function resizeCanvas() {
   width = window.innerWidth;
   height = window.innerHeight;
 
-  // Telas "retina" têm 2 ou 3 pixels físicos por pixel CSS.
-  // Desenhamos em alta resolução para as estrelas não ficarem borradas.
-  const dpr = Math.min(window.devicePixelRatio || 1, 2);
-  canvas.width = width * dpr;
-  canvas.height = height * dpr;
+  // Até 1.5x em telas retina: estrelas nítidas sem multiplicar o trabalho por 4
+  const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+  canvas.width = Math.round(width * dpr);
+  canvas.height = Math.round(height * dpr);
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 }
 
+/* ---------- Cria as estrelas de cada camada ---------- */
 function createStars() {
-  const count = Math.round(width * height * STAR_DENSITY);
-  stars = [];
-  for (let i = 0; i < count; i++) {
-    stars.push({
+  layers = LAYERS.map((config, i) => {
+    const count = Math.round(width * height * config.density);
+    const stars = Array.from({ length: count }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      size: Math.random() * 1.6 + 0.2,
-      speed: Math.random() * 0.2 + 0.1,
-    });
-  }
+      r: config.minSize + Math.random() * (config.maxSize - config.minSize),
+    }));
+    return { stars, speed: config.speed, round: config.round, offset: layers[i]?.offset ?? 0 };
+  });
 }
 
-function drawStars() {
+/* ---------- Desenha um quadro: 1 fill por camada ---------- */
+function drawFrame() {
   ctx.clearRect(0, 0, width, height);
   ctx.fillStyle = starColor;
 
-  stars.forEach((star) => {
+  for (const layer of layers) {
     ctx.beginPath();
-    ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
-    ctx.fill();
-  });
-}
-
-function updateStars() {
-  stars.forEach((star) => {
-    star.y += star.speed;
-    if (star.y > height) {
-      star.y = 0;
-      star.x = Math.random() * width;
+    for (const star of layer.stars) {
+      // A estrela desce e, ao passar do fim da tela, volta para o topo (% = resto da divisão)
+      const y = (star.y + layer.offset) % height;
+      if (layer.round) {
+        ctx.moveTo(star.x + star.r, y);
+        ctx.arc(star.x, y, star.r, 0, Math.PI * 2);
+      } else {
+        ctx.rect(star.x, y, star.r * 1.6, star.r * 1.6);
+      }
     }
-  });
+    ctx.fill(); // um único "pincelada" para a camada inteira
+  }
 }
 
-function animate() {
-  drawStars();
-  updateStars();
+/* ---------- Animação baseada em TEMPO, não em quadros ----------
+   Se o PC está lento e mostra só 30 quadros por segundo, as estrelas
+   andam a mesma distância por segundo: o movimento continua suave. */
+let lastTime = 0;
+let running = false;
+
+function animate(time) {
+  if (!running) return;
+  const seconds = Math.min((time - lastTime) / 1000, 0.1); // evita "salto" depois de uma pausa
+  lastTime = time;
+
+  for (const layer of layers) {
+    layer.offset = (layer.offset + layer.speed * seconds) % height;
+  }
+  drawFrame();
   requestAnimationFrame(animate);
 }
 
-// No celular, a barra de endereço some/aparece ao rolar e dispara "resize".
-// Antes, isso recriava TODAS as estrelas e o céu "piscava".
-// Agora só recriamos quando a LARGURA muda (ex: girar o celular).
+function start() {
+  if (running || reduceMotion) return;
+  running = true;
+  lastTime = performance.now();
+  requestAnimationFrame(animate);
+}
+
+function stop() {
+  running = false;
+}
+
+// Aba escondida (o usuário foi para outra aba)? Para tudo e economiza bateria.
+document.addEventListener("visibilitychange", () => (document.hidden ? stop() : start()));
+
+/* ---------- Redimensionar ----------
+   No celular, a barra de endereço some/aparece ao rolar e dispara "resize".
+   Só recriamos as estrelas quando a LARGURA muda (ex: girar o celular). */
 let lastWidth = window.innerWidth;
+let resizeTimer;
 window.addEventListener("resize", () => {
-  resizeCanvas();
-  if (window.innerWidth !== lastWidth) {
+  clearTimeout(resizeTimer);
+  // "Debounce": espera o usuário parar de redimensionar antes de redesenhar
+  resizeTimer = setTimeout(() => {
+    const widthChanged = window.innerWidth !== lastWidth;
     lastWidth = window.innerWidth;
-    createStars();
-  }
-  if (reduceMotion) drawStars();
+    resizeCanvas();
+    if (widthChanged || layers.length === 0) createStars();
+    drawFrame();
+  }, 150);
 });
 
+/* ---------- Início ---------- */
 resizeCanvas();
 createStars();
-readStarColor();
-
-// Quem pediu "reduzir movimento" no sistema vê o céu parado
-if (reduceMotion) {
-  drawStars();
-} else {
-  animate();
-}
+readStarColor(); // lê a cor do tema e desenha o primeiro quadro
+start();

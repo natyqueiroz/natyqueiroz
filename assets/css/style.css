@@ -32,7 +32,7 @@
 
 /* No tema claro, o "vidro" dos cards fica branco em vez de cinza */
 [data-theme="light"] .card {
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.82);
 }
 
 /* =========================================================
@@ -427,10 +427,14 @@ section[id] {
 .card {
   border-radius: 28px;
   padding: clamp(20px, 3vw, 26px);
-  background: rgba(var(--fg-rgb), 0.05);
+  /* PERFORMANCE: sem backdrop-filter aqui.
+     O desfoque em cima de um fundo animado obriga o navegador a refazer o "vidro"
+     de todos os cards a cada quadro, e isso travava PCs mais fracos.
+     Um fundo quase opaco dá um efeito parecido e custa praticamente nada. */
+  background:
+    linear-gradient(rgba(var(--fg-rgb), 0.05), rgba(var(--fg-rgb), 0.05)),
+    rgba(var(--bg-rgb), 0.72);
   border: 1px solid rgba(var(--fg-rgb), 0.10);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
   box-shadow:
     0 26px 70px rgba(0, 0, 0, calc(0.55 * var(--shadow-k))),
     inset 0 1px 0 rgba(var(--fg-rgb), 0.05);
@@ -1075,9 +1079,10 @@ section[id] {
   border-radius: 999px;
   display: grid;
   place-items: center;
-  background: rgba(var(--fg-rgb), 0.06);
+  background:
+    linear-gradient(rgba(var(--fg-rgb), 0.06), rgba(var(--fg-rgb), 0.06)),
+    var(--bg);
   border: 1px solid rgba(var(--fg-rgb), 0.14);
-  backdrop-filter: blur(8px);
 }
 
 .timeline__content {
@@ -1142,9 +1147,9 @@ section[id] {
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
   border: 1px solid rgba(var(--fg-rgb), 0.10);
   border-radius: 28px;
-  background: rgba(var(--fg-rgb), 0.03);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background:
+    linear-gradient(rgba(var(--fg-rgb), 0.03), rgba(var(--fg-rgb), 0.03)),
+    rgba(var(--bg-rgb), 0.72);
   overflow: hidden;
 }
 
