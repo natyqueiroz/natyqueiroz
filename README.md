@@ -29,7 +29,6 @@ Gosto de transformar ideias em sistemas organizados e fáceis de usar, e de ente
 🎯 Procurando **estágio em desenvolvimento** · aberta a **freelas**
 
 <br clear="right" />
-
 ## 🚀 Destaque
 
 **Sistema de Gestão de Vendas · Ensina Book (2026)**
