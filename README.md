@@ -1,7 +1,4 @@
 [![Typing SVG](https://readme-typing-svg.herokuapp.com/?font=CreatVibes&color=ffffff&size=35&center=true&vCenter=true&width=1000&lines=[=++Olá,++eu++sou++a++Nathaly++=])](https://git.io/typing-svg)
-#
-
-
 <p align="center">
   <strong>Estudante de Engenharia de Software na FIAP</strong> · São Paulo, Brasil
 </p>
