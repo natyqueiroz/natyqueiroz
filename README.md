@@ -1,8 +1,6 @@
-[![Typing SVG](https://readme-typing-svg.herokuapp.com/?font=CreatVibes&color=ffffff&size=35&center=true&vCenter=true&width=1000&lines=[=++Olá,++eu++sou++a++Nathaly++👋++=])](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.herokuapp.com/?font=CreatVibes&color=ffffff&size=35&center=true&vCenter=true&width=1000&lines=[=++Olá,++eu++sou++a++Nathaly++=])](https://git.io/typing-svg)
 #
 
-
-<h1 align="center">Olá, eu sou a Nathaly 👋</h1>
 
 <p align="center">
   <strong>Estudante de Engenharia de Software na FIAP</strong> · São Paulo, Brasil
