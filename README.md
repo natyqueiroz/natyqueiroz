@@ -30,11 +30,11 @@ Gosto de transformar ideias em sistemas organizados e fáceis de usar, e de ente
 
 <br clear="right" />
 
-## 🛠️ Tecnologias
+## 🛠️ Tech Stack
  
 <p align="center">
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=js,cs,py,html,css,react,nodejs,express&perline=8" alt="JavaScript, C#, Python, HTML, CSS, React, Node.js e Express" />
+    <img src="https://skillicons.dev/icons?i=js,cs,py,html,css,react,nodejs,express&perline=8" alt="JavaScript, C#, Python, HTML, CSS, React e Node.js" />
   </a>
   <br />
   <a href="https://skillicons.dev">
