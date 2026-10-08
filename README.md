@@ -1,9 +1,5 @@
 <p align="center">
-<<<<<<< HEAD
-  <img src="assets/banner.png" alt="Banner em pixel art: cidade ao entardecer com o nome Nathaly Barbosa e um trecho de código" width="100%" />
-=======
   <img src="assets/img/banner-github-nathaly.png" alt="Banner em pixel art: cidade ao entardecer com o nome Nathaly Barbosa e um trecho de código" width="100%" />
->>>>>>> e6060a3 (Fix: READMI alteracoes)
 </p>
 
 [![Typing SVG](https://readme-typing-svg.herokuapp.com/?font=CreatVibes&color=ffffff&size=35&center=true&vCenter=true&width=1000&lines=[=++Olá,++eu++sou++a++Nathaly++=])](https://git.io/typing-svg)
@@ -22,11 +18,7 @@
 
 ## 👩‍💻 Sobre mim
 
-<<<<<<< HEAD
-<img align="right" width="380" src="assets/olhar-binario.jpg" alt="Retrato da Nathaly formado por números binários, com destaque no olhar" />
-=======
 <img align="right" width="380" src="assets/img/opcao-2-close.jpg" alt="Retrato da Nathaly formado por números binários, com destaque no olhar" />
->>>>>>> e6060a3 (Fix: READMI alteracoes)
 
 Comecei a programar ainda no ensino médio, no curso de **Análise e Desenvolvimento de Sistemas do SENAI**, e desde então não parei mais.
 
