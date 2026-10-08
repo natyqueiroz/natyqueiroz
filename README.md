@@ -1,3 +1,7 @@
+[![Typing SVG](https://readme-typing-svg.herokuapp.com/?font=CreatVibes&color=ffffff&size=35&center=true&vCenter=true&width=1000&lines=[=++Welcome,+To+My+Profile!++=])](https://git.io/typing-svg)
+#
+
+
 <h1 align="center">Olá, eu sou a Nathaly 👋</h1>
 
 <p align="center">
