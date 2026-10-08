@@ -107,15 +107,21 @@ function projectCard(project) {
     .filter(Boolean) // remove os "false" dos links vazios
     .join("");
 
-  const thumb = project.image
+  // Imagem do projeto (ou um "cartaz" com o ícone, se ainda não houver print)
+  const picture = project.image
     ? `<img src="${esc(project.image)}" alt="${esc(t("project.screenshot", { title }))}" loading="lazy" />`
-    : "";
+    : `<span class="project__placeholder" aria-hidden="true"><i data-lucide="${esc(project.icon || "code-xml")}"></i></span>`;
+
+  // Se o projeto tem site no ar, a imagem inteira vira um link para ele
+  const thumb = project.live
+    ? `<a class="project__thumb" href="${esc(project.live)}" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">${picture}</a>`
+    : `<div class="project__thumb">${picture}</div>`;
 
   const role = tr(project.role);
 
   return `
     <article class="card project ${project.featured ? "project--featured" : ""}">
-      <div class="project__thumb">${thumb}</div>
+      ${thumb}
       <div class="project__body">
         <p class="project__meta">${esc(tr(project.type))} · ${esc(project.year)}</p>
         <h3 class="project__title">${esc(title)}</h3>

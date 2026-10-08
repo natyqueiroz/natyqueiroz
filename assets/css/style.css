@@ -1628,3 +1628,22 @@ section[id] {
     padding-bottom: 100px;
   }
 }
+
+a.project__thumb {
+  display: block;
+}
+
+/* Sem print ainda: um ícone grande e discreto no centro */
+.project__placeholder {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  color: rgba(var(--fg-rgb), 0.35);
+}
+
+.project__placeholder svg {
+  width: 56px;
+  height: 56px;
+  stroke-width: 1.25;
+}

@@ -24,7 +24,7 @@ const PORTFOLIO = {
   /* Seu usuário do GitHub (só o nome, sem link).
      Com ele preenchido, aparecem a ATIVIDADE e o ARQUIVO de repositórios.
      Deixe "" para esconder essas seções. */
-  githubUser: "",
+  githubUser: "natyqueiroz",
 
   /* Link do seu currículo em PDF (ex: "assets/cv/nathaly-barbosa-cv.pdf").
      Deixe "" para esconder o botão. */
@@ -99,12 +99,13 @@ const PORTFOLIO = {
   /* ===== PROJETOS =====
      Adicione quantos quiser. Todos aparecem na grade, com filtro por tecnologia.
      - featured: true   → card grande, em destaque (use em 1 ou 2 projetos)
-     - image            → caminho do print, ex: "assets/img/projects/meu-projeto.jpg" ("" = fundo gradiente)
-     - live / repo      → links (deixe "" se não tiver, o botão some)
+     - image            → caminho do print, ex: "assets/img/projects/meu-projeto.jpg" ("" = ícone no lugar)
+     - icon             → ícone mostrado enquanto não há print (nomes em https://lucide.dev/icons)
+     - live / repo      → links (deixe "" se não tiver, o botão some). Com "live", a imagem também vira link
      - role             → a SUA parte no projeto (recrutador adora ler isso) */
   projects: [
     {
-      title: { en: "Cancellation control — Ensina Book", pt: "Controle de cancelamento — Ensina Book" },
+      title: { en: "Admnistrative system — Ensina Book", pt: "Painel Administrativo — Ensina Book" },
       year: 2026,
       type: { en: "Work", pt: "Trabalho" },
       featured: false, // true = card grande, ocupando 2 colunas
@@ -117,45 +118,12 @@ const PORTFOLIO = {
         pt: "Desenvolvi o módulo de cancelamento de ponta a ponta, da interface à API e ao banco de dados. Sistema interno: prints disponíveis mediante solicitação.",
       },
       tags: ["JavaScript", "Node.js", "Express", "SQLite"],
-      image: "",
-      live: "", // sistema interno: NUNCA coloque o link real aqui
-      repo: "",
-    },
-    {
-      title: { en: "Personal portfolio", pt: "Portfólio pessoal" },
-      year: 2026,
-      type: { en: "Personal", pt: "Pessoal" },
-      featured: false,
-      description: {
-        en: "This site. A responsive portfolio in English and Portuguese, with light and dark themes, an animated starfield and content loaded from a single data file.",
-        pt: "Este site. Um portfólio responsivo em inglês e português, com tema claro e escuro, fundo estrelado animado e conteúdo carregado a partir de um único arquivo de dados.",
-      },
-      role: { en: "Design and development from scratch.", pt: "Design e desenvolvimento do zero." },
-      tags: ["HTML", "CSS", "JavaScript", "Canvas"],
-      image: "",
-      live: "",
+      icon: "clipboard-list",
+      image: "assets/img/capa-paineladm.png", // ex: "assets/img/projects/ensina-book.jpg" (print com DADOS FICTÍCIOS)
+      live: "https://natyqueiroz.github.io/EnsinaBook-Painel-admnistrativo/", // sistema interno: NUNCA coloque o link real aqui
       repo: "",
     },
 
-    // ↓↓↓ MODELO: copie este bloco para cada projeto novo ↓↓↓
-    {
-      title: { en: "Project name", pt: "Nome do projeto" },
-      year: 2026,
-      type: { en: "University", pt: "Faculdade" },
-      featured: false,
-      description: {
-        en: "What it is and what problem it solves, in one or two sentences.",
-        pt: "O que é e que problema resolve, em uma ou duas frases.",
-      },
-      role: {
-        en: "What YOU did (ex: built the team page and the mobile menu).",
-        pt: "O que VOCÊ fez (ex: criei a página da equipe e o menu mobile).",
-      },
-      tags: ["HTML", "CSS"],
-      image: "",
-      live: "",
-      repo: "",
-    },
   ],
 
   /* ===== TRAJETÓRIA (formação + experiência) =====
