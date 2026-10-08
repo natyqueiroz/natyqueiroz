@@ -29,12 +29,6 @@ Gosto de transformar ideias em sistemas organizados e fáceis de usar, e de ente
 🎯 Procurando **estágio em desenvolvimento** · aberta a **freelas**
 
 <br clear="right" />
-## 🚀 Destaque
-
-**Sistema de Gestão de Vendas · Ensina Book (2026)**
-Aplicação full-stack para o gerenciamento diário de vendas, cancelamentos, eventos e comissões, com autenticação, API REST e banco de dados relacional.
-`JavaScript` `Node.js` `Express` `SQLite`
-
 ## 🛠️ Tecnologias
 
 <p align="center">
