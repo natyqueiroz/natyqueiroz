@@ -18,18 +18,15 @@
 
 ## 👩‍💻 Sobre mim
 
-<img align="right" width="380" src="assets/img/opcao-2-close.jpg" alt="Retrato da Nathaly formado por números binários, com destaque no olhar" />
+<img align="right" width="340" src="assets/img/opcao-2-close.jpg" alt="Retrato da Nathaly formado por números binários, com destaque no olhar" />
 
-Comecei a programar ainda no ensino médio, no curso de **Análise e Desenvolvimento de Sistemas do SENAI**, e desde então não parei mais.
+Já estudei em três países, e em todos eles o código veio junto.
 
-Fiz o último ano do ensino médio em **Missouri, nos Estados Unidos**, e cursei um ano de **Engenharia Informática no IADE, em Lisboa**, com coeficiente de rendimento de **8,7/10**. Hoje estudo **Engenharia de Software na FIAP** (previsão de conclusão em 2030).
+Minha primeira linha foi no **SENAI**, no curso de Análise e Desenvolvimento de Sistemas. Depois vieram um ano em **Missouri, nos EUA**, um ano de **Engenharia Informática em Lisboa** e, agora, **Engenharia de Software na FIAP**.
 
-Gosto de transformar ideias em sistemas organizados e fáceis de usar, e de entender o porquê de cada linha de código.
+Gosto de transformar ideias em sistemas organizados e fáceis de usar, e de entender o porquê de cada linha de código. Foi assim que construí, na **Ensina Book**, o **sistema de gestão de vendas** que a equipe usa todos os dias.
 
-- 🔭 Trabalho na **Ensina Book**, onde desenvolvi um sistema full-stack de gestão de vendas usado no dia a dia da empresa
-- 🌱 Estudando estruturas de dados, desenvolvimento web e back-end com Node.js
-- 🎯 Em busca de **estágio em desenvolvimento** e aberta a projetos **freelance**
-- 🌍 Já morei no Brasil, nos EUA e em Portugal
+🎯 Procurando **estágio em desenvolvimento** · aberta a **freelas**
 
 <br clear="right" />
 
