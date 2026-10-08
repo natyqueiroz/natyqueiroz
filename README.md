@@ -1,4 +1,4 @@
-[![Typing SVG](https://readme-typing-svg.herokuapp.com/?font=CreatVibes&color=ffffff&size=35&center=true&vCenter=true&width=1000&lines=[=++Welcome,+To+My+Profile!++=])](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.herokuapp.com/?font=CreatVibes&color=ffffff&size=35&center=true&vCenter=true&width=1000&lines=[=++Olá,++eu++sou++a++Nathaly++👋++=])](https://git.io/typing-svg)
 #
 
 
